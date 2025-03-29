@@ -17,6 +17,7 @@ export const protect = asyncHandler(async (req: AuthRequest, res: Response, next
     try {
       // Get token from header
       token = req.headers.authorization.split(' ')[1];
+      console.log(token);
 
       // Verify token
       const secret = process.env.JWT_SECRET as string;

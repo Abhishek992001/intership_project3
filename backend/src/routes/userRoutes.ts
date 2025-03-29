@@ -12,8 +12,8 @@ import { protect, admin } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
-router.route('/')
-  .get(protect, admin, getUsers);
+//router.route('/').get(protect, admin, getUsers);
+router.route('/').get(getUsers);
 
 router.get('/pending', protect, admin, getPendingUsers);
 router.get('/volunteers', protect, getVolunteerDirectory);

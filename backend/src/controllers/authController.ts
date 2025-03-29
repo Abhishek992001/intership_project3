@@ -9,8 +9,13 @@ import { AuthRequest } from '../middleware/authMiddleware';
 // @desc    Register a new user
 // @route   POST /api/auth/register
 // @access  Public
+// export const registerUser = asyncHandler(async (req: Request, res: Response) => {
+//   const { name, email, password, phoneNumber, bloodGroup, location, skills } = req.body;
+
+
 export const registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const { name, email, password, phoneNumber, bloodGroup, location, skills } = req.body;
+  const { name, email, password, phoneNumber, bloodGroup, location, skills, role } = req.body;
+
 
   // Check if user already exists
   const userExists = await User.findOne({ email });
@@ -29,7 +34,7 @@ export const registerUser = asyncHandler(async (req: Request, res: Response) => 
     bloodGroup,
     location,
     skills: skills || [],
-    role: UserRole.VOLUNTEER,
+    role: role || UserRole.VOLUNTEER,
     status: UserStatus.PENDING, // New users need admin approval
   });
 
