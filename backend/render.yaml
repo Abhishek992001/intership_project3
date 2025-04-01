@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: intership_project3
+    env: node
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    rootDir: .
