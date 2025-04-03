@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel';
 import { UserRole, UserStatus } from '../types/user';
@@ -35,11 +35,12 @@ export const protect = asyncHandler(async (req: AuthRequest, res: Response, next
         throw new Error('Not authorized, user not found');
       }
 
+      // TEMPORARILY COMMENTED OUT FOR DEVELOPMENT
       // Check if the user is approved
-      if (req.user.status !== UserStatus.APPROVED) {
-        res.status(403);
-        throw new Error('Your account is pending approval');
-      }
+      // if (req.user.status !== UserStatus.APPROVED) {
+      //   res.status(403);
+      //   throw new Error('Your account is pending approval');
+      // }
 
       next();
     } catch (error) {
